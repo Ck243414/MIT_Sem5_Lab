@@ -1,0 +1,65 @@
+---
+title: "R Notebook"
+output:
+  pdf_document: default
+  html_notebook: default
+---
+```{r}
+library(dplyr)
+
+```
+```{r}
+library(psych)
+setwd('C:\\Users\\Chaitanya Kannan\\Desktop\\SDA Lab')
+
+```
+Importing data which is in csv file
+```{r}
+pdata = read.csv('pizza_delivery.csv')
+
+
+```
+
+Printing Summary of data
+```{r}
+summary(pdata)
+```
+Printing first few rows of the data
+```{r}
+head(pdata)
+
+```
+Number of rows in dataset:
+```{r}
+nrow(pdata)
+
+```
+Number of columns in dataset:
+```{r}
+ncol(pdata)
+```
+
+Count total rows in data frame with no NA values in any column of
+```{r}
+nrow(na.omit(pdata))
+
+```
+Printing absolute frequencies of Branch attribute
+```{r}
+table(pdata$branch)
+```
+Printing relative frequencies of Branch attribute length(pdata$branch): Gives the number of rows in the data
+```{r}
+table(pdata$branch)/length(pdata$branch)
+
+```
+Printing ECDF of branch
+```{r}
+plot(ecdf(table(pdata$branch)), xlab="Branch", ylab="ECDF", main="ECDF plot for Branch", col=c('blue','green'))
+plot(ecdf(pdata$temperature), xlab="Temperature", ylab="ECDF", main="ECDF plot for Temperature", col="blue")
+barplot(table(pdata$branch), xlab="Branch", ylab="Count", main="Bar plot of Branch", col=c('#001199','#923','green'))
+pie(table(pdata$branch), labels=names(table(pdata$branch)), main="Bar plot of Branch", col=c('#001199','red','green'))
+hist(pdata$time)
+hist(pdata$time,freq = TRUE)
+plot(density(pdata$time, kernel = 'gaussian', bw = 0.5))
+```
