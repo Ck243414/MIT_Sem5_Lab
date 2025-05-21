@@ -1,0 +1,1 @@
+LAB2_Q1a.o: LAB2_Q1a.ASM

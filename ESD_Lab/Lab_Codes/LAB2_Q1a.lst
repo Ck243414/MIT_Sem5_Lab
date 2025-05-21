@@ -1,0 +1,201 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             RESET, DATA, READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         
+    4 00000000         __Vectors
+    5 00000000 10001000        DCD              0x10001000  ; STACK POINTER VAL
+                                                            UE WHEN STACK IS EM
+                                                            PTY
+    6 00000004 00000000        DCD              Reset_Handler ; RESET VECTOR
+    7 00000008         
+    8 00000008                 ALIGN
+    9 00000008                 AREA             mycode, CODE, READONLY
+   10 00000000         ENTRY
+   11 00000000                 EXPORT           Reset_Handler
+   12 00000000         
+   13 00000000         Reset_Handler
+   14 00000000         
+   15 00000000 F04F 000A       MOV              R0, #10     ; LOOP COUNTER
+   16 00000004 4912            LDR              R1, =SRC    ; ADDRESS OF SOURCE
+                                                            
+   17 00000006 4C13            LDR              R4, =DS1    ; ADDRESS OF DESTIN
+                                                            ATION 1
+   18 00000008 4D13            LDR              R5, =DS2    ; ADDRESS OF DESTIN
+                                                            ATION 2
+   19 0000000A F105 0528       ADD              R5, #40
+   20 0000000E         
+   21 0000000E         LMAO
+   22 0000000E 680A            LDR              R2, [R1]    ; LOAD R1 VALUE INT
+                                                            O R2
+   23 00000010 F101 0104       ADD              R1, #4      ; INCREMENT R1 BY 4
+                                                             TO GET NEXT ELEMEN
+                                                            T
+   24 00000014         
+   25 00000014 6022            STR              R2, [R4]    ; LOAD ARRAY VALUE 
+                                                            IN RAM
+   26 00000016         
+   27 00000016 6826            LDR              R6, [R4]    ; LOAD R4 VALUE
+   28 00000018 602E            STR              R6, [R5]    ; STORE R4 VALUE IN
+                                                             R5
+   29 0000001A         
+   30 0000001A F104 0404       ADD              R4, #4      ; INCREMENT R4 BY 4
+                                                             TO STORE IN NEXT E
+                                                            LEMENT
+   31 0000001E F105 0504       ADD              R5, #4      ; INCREMENT R4 BY 4
+                                                             TO STORE IN NEXT E
+                                                            LEMENT
+   32 00000022         
+   33 00000022 3801            SUBS             R0, #1      ; SUBTRACT LOOP BY 
+                                                            1
+   34 00000024 D1F3            BNE              LMAO        ; CHECK IF R0 ZERO 
+                                                            BIT IS ZERO, ELSE J
+                                                            UMP BACK TO LMAO
+   35 00000026         
+   36 00000026         STOP
+   37 00000026 E7FE            B                STOP
+   38 00000028         
+   39 00000028 00000001 
+              00000002 
+              00000003 
+              00000004 
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+              00000005 
+              00000006 
+              00000007 
+              00000008 
+              00000009 
+              0000000A SRC     DCD              1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+   40 00000050 00000000 
+              00000000 
+              00000000         AREA             DATASEG, DATA, READWRITE
+   41 00000000 00000000 
+                       DS1     DCD              0           ;DST location in Da
+                                                            ta segment
+   42 00000004 00000000 
+                       DS2     DCD              0           ;DST location in Da
+                                                            ta segment
+   43 00000008                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=LAB2_Q1a
+.d -oLAB2_Q1a.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\AR
+M\Inc\NXP\LPC17xx --predefine="__EVAL SETA 1" --list=LAB2_Q1a.lst LAB2_Q1a.ASM
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 1 in file LAB2_Q1a.ASM
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 4 in file LAB2_Q1a.ASM
+   Uses
+      At line 2 in file LAB2_Q1a.ASM
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+ENTRY 00000000
+
+Symbol: ENTRY
+   Definitions
+      At line 10 in file LAB2_Q1a.ASM
+   Uses
+      None
+Comment: ENTRY unused
+LMAO 0000000E
+
+Symbol: LMAO
+   Definitions
+      At line 21 in file LAB2_Q1a.ASM
+   Uses
+      At line 34 in file LAB2_Q1a.ASM
+Comment: LMAO used once
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 13 in file LAB2_Q1a.ASM
+   Uses
+      At line 6 in file LAB2_Q1a.ASM
+      At line 11 in file LAB2_Q1a.ASM
+
+SRC 00000028
+
+Symbol: SRC
+   Definitions
+      At line 39 in file LAB2_Q1a.ASM
+   Uses
+      At line 16 in file LAB2_Q1a.ASM
+Comment: SRC used once
+STOP 00000026
+
+Symbol: STOP
+   Definitions
+      At line 36 in file LAB2_Q1a.ASM
+   Uses
+      At line 37 in file LAB2_Q1a.ASM
+Comment: STOP used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 9 in file LAB2_Q1a.ASM
+   Uses
+      None
+Comment: mycode unused
+6 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+DATASEG 00000000
+
+Symbol: DATASEG
+   Definitions
+      At line 40 in file LAB2_Q1a.ASM
+   Uses
+      None
+Comment: DATASEG unused
+DS1 00000000
+
+Symbol: DS1
+   Definitions
+      At line 41 in file LAB2_Q1a.ASM
+   Uses
+      At line 17 in file LAB2_Q1a.ASM
+Comment: DS1 used once
+DS2 00000004
+
+Symbol: DS2
+   Definitions
+      At line 42 in file LAB2_Q1a.ASM
+   Uses
+      At line 18 in file LAB2_Q1a.ASM
+Comment: DS2 used once
+3 symbols
+344 symbols in table

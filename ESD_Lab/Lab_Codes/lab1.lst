@@ -1,0 +1,164 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             RESET, DATA, READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         
+    4 00000000         __Vectors
+    5 00000000 10001000        DCD              0x10001000  ; STACK POINTER VAL
+                                                            UE WHEN STACK IS EM
+                                                            PTY
+    6 00000004 00000000        DCD              Reset_Handler ; RESET VECTOR
+    7 00000008         
+    8 00000008                 ALIGN
+    9 00000008                 AREA             mycode, CODE, READONLY
+   10 00000000         ENTRY
+   11 00000000                 EXPORT           Reset_Handler
+   12 00000000         
+   13 00000000         Reset_Handler
+   14 00000000 480F            LDR              R0, =SRC
+   15 00000002 4910            LDR              R1, =DST
+   16 00000004 F04F 020A       MOV              R2, #10
+   17 00000008         LOOP
+   18 00000008 F850 3B04       LDR              R3,[R0],#04
+   19 0000000C F841 3B04       STR              R3,[R1],#04
+   20 00000010 3A01            SUBS             R2,#1
+   21 00000012 D1F9            BNE              LOOP
+   22 00000014         STOP
+   23 00000014 E7FE            B                STOP
+   24 00000016         
+   25 00000016 00 00 11111111 
+              22222222 
+              33333333 
+              44444444 
+              55555555 
+              66666666 
+              77777777 
+              88888888 
+              99999999 
+              AAAAAAAA SRC     DCD              0X11111111, 0X22222222, 0X33333
+333, 0X44444444, 0X55555555, 0X66666666, 0X77777777, 0X88888888, 0X99999999, 0X
+AAAAAAAA
+   26 00000040         
+   27 00000040 00000000 
+              00000000         AREA             mydata, DATA, READWRITE
+   28 00000000 00000000 
+              00000000 
+              00000000 
+              00000000 
+              00000000 
+              00000000 
+              00000000 
+              00000000 
+              00000000 
+              00000000 DST     DCD              0,0,0,0,0,0,0,0,0,0
+   29 00000028                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=lab1.d -
+olab1.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\NX
+P\LPC17xx --predefine="__EVAL SETA 1" --list=lab1.lst lab1.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 1 in file lab1.asm
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 4 in file lab1.asm
+   Uses
+      At line 2 in file lab1.asm
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+ENTRY 00000000
+
+Symbol: ENTRY
+   Definitions
+      At line 10 in file lab1.asm
+   Uses
+      None
+Comment: ENTRY unused
+LOOP 00000008
+
+Symbol: LOOP
+   Definitions
+      At line 17 in file lab1.asm
+   Uses
+      At line 21 in file lab1.asm
+Comment: LOOP used once
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 13 in file lab1.asm
+   Uses
+      At line 6 in file lab1.asm
+      At line 11 in file lab1.asm
+
+SRC 00000018
+
+Symbol: SRC
+   Definitions
+      At line 25 in file lab1.asm
+   Uses
+      At line 14 in file lab1.asm
+Comment: SRC used once
+STOP 00000014
+
+Symbol: STOP
+   Definitions
+      At line 22 in file lab1.asm
+   Uses
+      At line 23 in file lab1.asm
+Comment: STOP used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 9 in file lab1.asm
+   Uses
+      None
+Comment: mycode unused
+6 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+DST 00000000
+
+Symbol: DST
+   Definitions
+      At line 28 in file lab1.asm
+   Uses
+      At line 15 in file lab1.asm
+Comment: DST used once
+mydata 00000000
+
+Symbol: mydata
+   Definitions
+      At line 27 in file lab1.asm
+   Uses
+      None
+Comment: mydata unused
+2 symbols
+343 symbols in table

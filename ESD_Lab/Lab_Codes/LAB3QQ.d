@@ -1,0 +1,1 @@
+LAB3QQ.o: LAB3QQ.asm

@@ -1,0 +1,175 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             RESET, DATA, READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         
+    4 00000000         __Vectors
+    5 00000000 10001000        DCD              0x10001000  ; STACK POINTER VAL
+                                                            UE WHEN STACK IS EM
+                                                            PTY
+    6 00000004 00000000        DCD              Reset_Handler ; RESET VECTOR
+    7 00000008         
+    8 00000008                 ALIGN
+    9 00000008                 AREA             mycode, CODE, READONLY
+   10 00000000         ENTRY
+   11 00000000                 EXPORT           Reset_Handler
+   12 00000000         
+   13 00000000         Reset_Handler
+   14 00000000         
+   15 00000000 4815            LDR              R0,= VAL1
+   16 00000002 4916            LDR              R1,= VAL2
+   17 00000004 4A16            LDR              R2,= RES
+   18 00000006 F04F 0304       MOV              R3,#4
+   19 0000000A F04F 0400       MOV              R4,#0
+   20 0000000E F384 8803       MSR              xPSR,R4
+   21 00000012         
+   22 00000012 F850 4B04 
+                       BACK    LDR              R4,[R0],#4
+   23 00000016 F851 5B04       LDR              R5, [R1], #4
+   24 0000001A EB54 0605       ADCS             R6,R4,R5
+   25 0000001E F842 6B04       STR              R6, [R2], #4
+   26 00000022 F1A3 0301       SUB              R3, #1
+   27 00000026 F093 0F00       TEQ              R3, #0
+   28 0000002A D1F2            BNE              BACK
+   29 0000002C F149 0900       ADC              R9,#0
+   30 00000030 F8C2 9000       STR              R9,[R2]
+   31 00000034         STOP
+   32 00000034 E7FE            B                STOP
+   33 00000036         
+   34 00000036 00 00 92345678 
+              97654321 
+              98273645 
+              95362718 VAL1    DCD              0x92345678, 0x97654321, 0x98273
+645, 0x95362718
+   35 00000048 95362718 
+              98273645 
+              97654321 
+              92345678 VAL2    DCD              0x95362718, 0x98273645, 0x97654
+321, 0x92345678
+   36 00000058 00000000 
+              00000000 
+              00000000         AREA             DATASEG, DATA, READWRITE
+   37 00000000 00000000 
+              00000000 
+              00000000 
+              00000000 RES     DCD              0, 0, 0, 0  ;DST location in Da
+                                                            ta segment
+   38 00000010                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=lab3_q2.
+d -olab3_q2.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\
+Inc\NXP\LPC17xx --predefine="__EVAL SETA 1" --list=lab3_q2.lst lab3_q2.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 1 in file lab3_q2.asm
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 4 in file lab3_q2.asm
+   Uses
+      At line 2 in file lab3_q2.asm
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+BACK 00000012
+
+Symbol: BACK
+   Definitions
+      At line 22 in file lab3_q2.asm
+   Uses
+      At line 28 in file lab3_q2.asm
+Comment: BACK used once
+ENTRY 00000000
+
+Symbol: ENTRY
+   Definitions
+      At line 10 in file lab3_q2.asm
+   Uses
+      None
+Comment: ENTRY unused
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 13 in file lab3_q2.asm
+   Uses
+      At line 6 in file lab3_q2.asm
+      At line 11 in file lab3_q2.asm
+
+STOP 00000034
+
+Symbol: STOP
+   Definitions
+      At line 31 in file lab3_q2.asm
+   Uses
+      At line 32 in file lab3_q2.asm
+Comment: STOP used once
+VAL1 00000038
+
+Symbol: VAL1
+   Definitions
+      At line 34 in file lab3_q2.asm
+   Uses
+      At line 15 in file lab3_q2.asm
+Comment: VAL1 used once
+VAL2 00000048
+
+Symbol: VAL2
+   Definitions
+      At line 35 in file lab3_q2.asm
+   Uses
+      At line 16 in file lab3_q2.asm
+Comment: VAL2 used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 9 in file lab3_q2.asm
+   Uses
+      None
+Comment: mycode unused
+7 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+DATASEG 00000000
+
+Symbol: DATASEG
+   Definitions
+      At line 36 in file lab3_q2.asm
+   Uses
+      None
+Comment: DATASEG unused
+RES 00000000
+
+Symbol: RES
+   Definitions
+      At line 37 in file lab3_q2.asm
+   Uses
+      At line 17 in file lab3_q2.asm
+Comment: RES used once
+2 symbols
+344 symbols in table

@@ -1,0 +1,132 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             RESET,DATA,READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         __Vectors
+    4 00000000 10000000        DCD              0X10000000
+    5 00000004 00000000        DCD              Reset_Handler
+    6 00000008                 ALIGN
+    7 00000008                 AREA             mycode,CODE,READONLY
+    8 00000000                 ENTRY
+    9 00000000                 EXPORT           Reset_Handler
+   10 00000000         Reset_Handler
+   11 00000000 4807            LDR              r0,=N
+   12 00000002 6801            LDR              r1, [r0]    ; Load the value fr
+                                                            om src into r1
+   13 00000004 460A            MOV              r2, r1
+   14 00000006 EA4F 1212       LSR              r2, #4      ; Right shift to ge
+                                                            t the higher nibble
+                                                            
+   15 0000000A F001 010F       AND              r1, #0xF    ; Mask to get the l
+                                                            ower nibble
+   16 0000000E F04F 030A       MOV              r3, #0xA    ; Set r3 to 10 for 
+                                                            decimal conversion
+   17 00000012 FB02 1403       MLA              r4, r2, r3, r1 ; Multiply highe
+                                                            r nibble by 10 and 
+                                                            add lower nibble
+   18 00000016 4D03            LDR              r5, =DST
+   19 00000018 602C            STR              r4, [r5]    ; Store the result 
+                                                            in dst
+   20 0000001A         STOP
+   21 0000001A E7FE            B                STOP
+   22 0000001C 00000012 
+                       N       DCD              0x12
+   23 00000020 00000000 
+              00000000         AREA             mydata, DATA, READWRITE ;
+   24 00000000 00000000 
+                       DST     DCD              0
+   25 00000004                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=lab3q.d 
+-olab3q.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\
+NXP\LPC17xx --predefine="__EVAL SETA 1" --list=lab3q.lst lab3q.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 1 in file lab3q.asm
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 3 in file lab3q.asm
+   Uses
+      At line 2 in file lab3q.asm
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+N 0000001C
+
+Symbol: N
+   Definitions
+      At line 22 in file lab3q.asm
+   Uses
+      At line 11 in file lab3q.asm
+Comment: N used once
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 10 in file lab3q.asm
+   Uses
+      At line 5 in file lab3q.asm
+      At line 9 in file lab3q.asm
+
+STOP 0000001A
+
+Symbol: STOP
+   Definitions
+      At line 20 in file lab3q.asm
+   Uses
+      At line 21 in file lab3q.asm
+Comment: STOP used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 7 in file lab3q.asm
+   Uses
+      None
+Comment: mycode unused
+4 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+DST 00000000
+
+Symbol: DST
+   Definitions
+      At line 24 in file lab3q.asm
+   Uses
+      At line 18 in file lab3q.asm
+Comment: DST used once
+mydata 00000000
+
+Symbol: mydata
+   Definitions
+      At line 23 in file lab3q.asm
+   Uses
+      None
+Comment: mydata unused
+2 symbols
+341 symbols in table

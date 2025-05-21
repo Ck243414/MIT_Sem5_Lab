@@ -1,0 +1,21 @@
+*** Creating Trace Output File 'lcd.tra' Ok.
+### Preparing for ADS-LD.
+### Creating ADS-LD Command Line
+### List of Objects: adding '"startup_lpc17xx.o"'
+### List of Objects: adding '"system_lpc17xx.o"'
+### List of Objects: adding '"basiclcd.o"'
+### ADS-LD Command completed:
+--cpu Cortex-M3 "startup_lpc17xx.o" "system_lpc17xx.o" "basiclcd.o" 
+--ro-base 0x00000000 --entry 0x00000000 --rw-base 0x10000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\lcd.map" -o lcd.axf### Preparing Environment (PrepEnvAds)
+### ADS-LD Output File: 'lcd.axf'
+### ADS-LD Command File: 'lcd.lnp'
+### Checking for dirty Components...
+### Creating CmdFile 'lcd.lnp', Handle=0x000023C4
+### Writing '.lnp' file
+### ADS-LD Command file 'lcd.lnp' is ready.
+### ADS-LD: About to start ADS-LD Thread.
+### ADS-LD: executed with 0 errors
+### Updating obj list
+### LDADS_file() completed.
